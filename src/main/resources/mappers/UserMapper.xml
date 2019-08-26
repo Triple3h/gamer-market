@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.gamer.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.qf.gamer.domain.entity.User">
+    <!--@mbg.generated-->
+    <id column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="join_date" jdbcType="TIMESTAMP" property="joinDate" />
+    <result column="last_login" jdbcType="TIMESTAMP" property="lastLogin" />
+    <result column="is_super" jdbcType="INTEGER" property="isSuper" />
+    <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    `uid`, user_name, `password`, join_date, last_login, is_super, is_delete
+  </sql>
+
+</mapper>

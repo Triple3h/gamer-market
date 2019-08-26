@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.gamer.mapper.GameMapper">
+    <resultMap id="BaseResultMap" type="com.qf.gamer.domain.entity.Game">
+        <!--@mbg.generated-->
+        <id column="game_id" jdbcType="INTEGER" property="gameId"/>
+        <result column="game_name" jdbcType="VARCHAR" property="gameName"/>
+        <result column="released_time" jdbcType="VARCHAR" property="releasedTime"/>
+        <result column="category_id" jdbcType="INTEGER" property="categoryId"/>
+        <result column="game_publisher" jdbcType="VARCHAR" property="gamePublisher"/>
+        <result column="score" jdbcType="DOUBLE" property="score"/>
+        <result column="price" jdbcType="INTEGER" property="price"/>
+        <result property="discount" column="discount"/>
+    </resultMap>
+
+    <!-- 打折游戏 -->
+    <resultMap id="game_img_result" type="com.qf.gamer.domain.vo.GameVo" extends="BaseResultMap">
+        <collection property="shopImages"
+                    ofType="com.qf.gamer.domain.entity.ShopImages"
+                    column="game_id"
+                    select="com.qf.gamer.mapper.ShopImagesMapper.getShopImg">
+
+        </collection>
+    </resultMap>
+
+    <!-- 分类游戏 -->
+    <resultMap id="game_img_plat_result" type="com.qf.gamer.domain.vo.GameVo" extends="BaseResultMap">
+        <association property="platforms" resultMap="com.qf.gamer.mapper.PlatformMapper.BaseResultMap"/>
+        <collection property="shopImages" resultMap="com.qf.gamer.mapper.ShopImagesMapper.BaseResultMap"/>
+    </resultMap>
+
+    <!-- 游戏详情 -->
+    <resultMap id="game_detail" type="com.qf.gamer.domain.vo.GameDetailVo" extends="BaseResultMap">
+        <association property="platforms" resultMap="com.qf.gamer.mapper.PlatformMapper.BaseResultMap"/>
+        <collection property="shopImages" resultMap="com.qf.gamer.mapper.ShopImagesMapper.BaseResultMap"/>
+        <collection property="category" resultMap="com.qf.gamer.mapper.CategoryMapper.BaseResultMap"/>
+        <collection property="gameInfo" resultMap="com.qf.gamer.mapper.GameInfoMapper.BaseResultMap"/>
+        <collection property="reviews" resultMap="com.qf.gamer.mapper.ReviewMapper.user_review_result"/>
+        <collection property="stock" resultMap="com.qf.gamer.mapper.StockMapper.BaseResultMap"/>
+    </resultMap>
+
+    <select id="getGameByIsOff" resultMap="game_img_result">
+        SELECT g.game_id,
+               game_name,
+               price,
+               discount
+        FROM game g
+        WHERE is_off = 1
+          AND is_use = 0
+        ORDER BY discount
+        LIMIT 6
+    </select>
+
+    <select id="getAllGames" resultMap="game_img_plat_result">
+        SELECT g.game_id, g.game_name, si.shop_img, p.platform_name
+        FROM game g
+        LEFT JOIN platform p ON g.game_id = p.game_id
+        LEFT JOIN shop_images si ON g.game_id = si.game_id
+        WHERE g.is_use = 0
+        ORDER BY score DESC
+        LIMIT #{pages},#{size}
+    </select>
+
+    <select id="getGamesByCate" resultMap="game_img_plat_result">
+        SELECT g.game_id, g.game_name, g.category_id,si.shop_img, p.platform_name
+        FROM game g
+        LEFT JOIN platform p ON g.game_id = p.game_id
+        LEFT JOIN shop_images si ON g.game_id = si.game_id
+        WHERE g.is_use = 0 AND category_id = #{cateId}
+        ORDER BY score DESC
+        LIMIT #{pages},#{size}
+    </select>
+
+    <select id="getGameDetail" resultMap="game_detail">
+        SELECT g.game_id, game_name, g.released_time, g.category_id, game_publisher, score, price,discount,
+               si.shop_img_id,shop_img, p.platform_name,c.category_name, game_intro, game_story, game_about,
+               r.review_content, r.release_time,s.stock_value,u.user_name,u.uid
+        FROM game g
+        LEFT JOIN shop_images si ON g.game_id = si.game_id
+        LEFT JOIN platform p ON g.game_id = p.game_id
+        LEFT JOIN category c ON g.category_id = c.category_id
+        LEFT JOIN game_info gi ON g.game_id = gi.game_id
+        LEFT JOIN review r ON g.game_id = r.game_id
+        LEFT JOIN stock s ON g.game_id = s.game_id
+        LEFT JOIN user u ON r.uid = u.uid
+        WHERE g.game_id = #{gameId} AND r.is_delete = 0
+    </select>
+
+
+</mapper>

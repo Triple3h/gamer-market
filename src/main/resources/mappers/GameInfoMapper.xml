@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.gamer.mapper.GameInfoMapper">
+  <resultMap id="BaseResultMap" type="com.qf.gamer.domain.entity.GameInfo">
+    <!--@mbg.generated-->
+    <id column="game_info_id" jdbcType="INTEGER" property="gameInfoId" />
+    <result column="game_intro" jdbcType="VARCHAR" property="gameIntro" />
+    <result column="game_story" jdbcType="VARCHAR" property="gameStory" />
+    <result column="game_id" jdbcType="INTEGER" property="gameId" />
+    <result column="game_about" jdbcType="VARCHAR" property="gameAbout" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    game_info_id, game_intro, game_story, game_id, game_about
+  </sql>
+
+</mapper>

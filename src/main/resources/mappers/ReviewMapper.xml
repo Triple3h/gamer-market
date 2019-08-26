@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.gamer.mapper.ReviewMapper">
+    <resultMap id="BaseResultMap" type="com.qf.gamer.domain.entity.Review">
+        <!--@mbg.generated-->
+        <id column="review_id" jdbcType="INTEGER" property="reviewId"/>
+        <result column="review_content" jdbcType="VARCHAR" property="reviewContent"/>
+        <result column="game_id" jdbcType="INTEGER" property="gameId"/>
+        <result column="release_time" jdbcType="TIMESTAMP" property="releaseTime"/>
+        <result column="uid" jdbcType="INTEGER" property="uid"/>
+        <result column="is_delete" jdbcType="INTEGER" property="isDelete"/>
+    </resultMap>
+
+    <resultMap id="user_review_result" type="com.qf.gamer.domain.vo.ReviewVo">
+        <id property="reviewId" column="review_id"/>
+        <result property="reviewContent" column="review_content"/>
+        <result property="releaseTime" column="release_time"/>
+        <association property="user" javaType="com.qf.gamer.domain.entity.User">
+            <id property="uid" column="uid"/>
+            <result property="userName" column="user_name"/>
+        </association>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        review_id, review_content, game_id, release_time, `uid`, is_delete
+    </sql>
+
+</mapper>
