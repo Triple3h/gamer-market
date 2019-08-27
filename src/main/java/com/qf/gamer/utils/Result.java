@@ -30,4 +30,19 @@ public class Result<T> implements Serializable {
         result.setStatus(404);
         return result;
     }
+
+    public static Result loginFirst() {
+        Result result = new Result();
+        result.setMsg(Constants.LOGIN_FIRST);
+        result.setStatus(250);
+        return result;
+    }
+
+    public static Result forbidden() {
+        Result result = new Result();
+        result.setMsg(Constants.ACCESS_STRING);
+        result.setStatus(403);
+        return result;
+    }
+
 }

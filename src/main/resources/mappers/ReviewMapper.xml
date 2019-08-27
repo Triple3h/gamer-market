@@ -34,4 +34,10 @@
         VALUES (#{review.reviewContent}, #{review.gameId},#{review.uid},#{review.reviewTitle},#{param1.reviewScore})
     </insert>
 
+    <update id="deleteReview">
+        UPDATE review
+        SET is_delete = 1
+        WHERE review_id = #{reviewId}
+    </update>
+
 </mapper>

@@ -19,7 +19,6 @@
                     ofType="com.qf.gamer.domain.entity.ShopImages"
                     column="game_id"
                     select="com.qf.gamer.mapper.ShopImagesMapper.getShopImg">
-
         </collection>
     </resultMap>
 

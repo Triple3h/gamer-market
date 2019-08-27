@@ -3,13 +3,15 @@ package com.qf.gamer.controller;
 import com.qf.gamer.domain.entity.Review;
 import com.qf.gamer.domain.entity.User;
 import com.qf.gamer.service.ReviewService;
+import com.qf.gamer.utils.Constants;
 import com.qf.gamer.utils.Result;
+import com.qf.gamer.utils.SessionUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 /**
  * @Classname ReviewController
@@ -22,7 +24,7 @@ import javax.servlet.http.HttpSession;
 public class ReviewController {
 
     @Resource
-    HttpServletRequest req;
+    HttpServletRequest request;
 
     @Resource
     ReviewService reviewService;
@@ -36,14 +38,12 @@ public class ReviewController {
      * @param review
      * @return
      */
-    @RequestMapping("/save")
-    public Result insertNewReview(Review review) {
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public Result insertNewReview(@RequestBody Review review) {
 
-        HttpSession session = req.getSession();
+        User user = SessionUtils.getSession(request);
 
-        User user = (User) session.getAttribute("userInfo");
-
-        Result result = null;
+        Result result;
 
         try {
             int rows;
@@ -51,16 +51,55 @@ public class ReviewController {
             if (user != null) {
                 rows = reviewService.insertNewReview(review);
             } else {
-                session.setAttribute("reviewInfo", review);
-                result.setMsg("请先登录");
-                result.setStatus(250);
-                return result;
+                SessionUtils.saveSession(request, review, Constants.REVIEW_SESSION);
+                return Result.loginFirst();
+            }
+            if (rows > 0) {
+                result = Result.success(rows);
+            } else {
+                throw new RuntimeException(Constants.EXCEPTION_MSG);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            result = Result.error(e.getMessage());
+        }
+        return result;
+    }
+
+    /**
+     * 管理员假删除评论
+     * 返回200表示成功
+     * 返回250 表示需要登录
+     * 返回403表示没有权限操作
+     * 返回404 表示操作失败
+     *
+     * @param reviewId
+     * @return
+     */
+    @RequestMapping(value = "/delete", method = RequestMethod.PUT)
+    public Result deleteReview(int reviewId) {
+
+        User user = SessionUtils.getSession(request);
+
+        Result result;
+
+        try {
+            int rows;
+
+            if (user != null) {
+                if (user.getIsSuper() == 1) {
+                    rows = reviewService.deleteReview(reviewId);
+                } else {
+                    return Result.forbidden();
+                }
+            } else {
+                return Result.loginFirst();
             }
 
             if (rows > 0) {
                 result = Result.success(rows);
             } else {
-                throw new RuntimeException("请先登录!!");
+                throw new RuntimeException(Constants.EXCEPTION_MSG);
             }
         } catch (Exception e) {
             e.printStackTrace();

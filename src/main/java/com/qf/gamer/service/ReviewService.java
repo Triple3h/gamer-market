@@ -9,4 +9,6 @@ import com.qf.gamer.domain.entity.Review;
 
 public interface ReviewService {
     int insertNewReview(Review review);
+
+    int deleteReview(int reviewId);
 }

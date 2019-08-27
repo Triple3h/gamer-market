@@ -13,4 +13,11 @@ public interface ReviewMapper {
      * @return
      */
     int insertNewReview(@Param("review") Review review);
+
+    /**
+     * 假删除评论
+     * @param reviewId
+     * @return
+     */
+    int deleteReview(@Param("reviewId") int reviewId);
 }
