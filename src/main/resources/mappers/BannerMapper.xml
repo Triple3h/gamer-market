@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.gamer.mapper.BannerMapper">
+    <resultMap id="BannerBaseMap" type="Banner">
+        <id property="bannerId" column="banner_id"/>
+        <result property="bannerImg" column="banner_img"/>
+        <result property="detailUrl" column="detail_url"/>
+        <result property="title" column="title"/>
+        <result property="order" column="order"/>
+        <result property="isDelete" column="is_delete"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+    <!-- 轮播图 -->
+    <select id="findBanner" resultMap="BannerBaseMap">
+        select r.banner_id, r.title, r.banner_img, r.detail_url
+        from banner r where r.is_delete=0 and r.order=#{order}
+        order by r.create_time desc limit 4
+    </select>
+</mapper>

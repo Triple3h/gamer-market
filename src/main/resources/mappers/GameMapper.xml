@@ -26,7 +26,7 @@
         from game g
         left join platform p on g.game_id = p.game_id
         left join shop_images si on g.game_id = si.game_id
-        where g.game_name like '%${gameName}%'
+        where g.game_name like '%${gameName}%' and g.is_use=0
     </select>
 
 
@@ -37,6 +37,7 @@
                 si.shop_img
         from game g left join platform p on g.game_id = p.game_id
                     left join shop_images si on g.game_id = si.game_id
+        where g.is_use=0
         order by g.released_time desc limit 6
     </select>
 
@@ -52,6 +53,7 @@
                si.shop_img
         from game g left join game_info gi on g.game_id = gi.game_id
                     left join shop_images si on g.game_id = si.game_id
+        where g.is_use=0
         order by g.score desc limit 3
     </select>
 

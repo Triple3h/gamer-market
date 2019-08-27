@@ -1,6 +1,7 @@
 package com.qf.gamer.mapper;
 
 import com.qf.gamer.domain.entity.Game;
+import com.qf.gamer.domain.vo.GameVo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

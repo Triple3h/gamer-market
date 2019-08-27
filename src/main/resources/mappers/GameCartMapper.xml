@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.gamer.mapper.GameCartMapper">
+
+    <update id="updateNumber">
+        UPDATE game_cart
+        SET number = #{number}
+        WHERE cart_id = #{cartId}
+    </update>
+
+    <update id="deleteCart">
+        UPDATE game_cart
+        SET is_delete = 1
+        WHERE cart_id = #{cartId}
+    </update>
+</mapper>

@@ -18,8 +18,8 @@
         select r.review_id, r.review_content, r.game_id, r.release_time,
                u.user_name
         from review r left join user u on r.uid = u.uid
-        where r.game_id =#{gameId}
-        order by r.release_time desc limit 6
+        where r.game_id =#{gameId} and r.is_delete=0
+        order by r.release_time desc limit #{page},#{size}
     </select>
 
 

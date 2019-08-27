@@ -33,4 +33,10 @@ public class Result<T> {
         return result;
     }
 
+    public static Result loginFirst() {
+        Result result = new Result();
+        result.setMsg(Constants.LOGIN_FIRST);
+        result.setStatus(Constants.ERROR_STATUS_250);
+        return result;
+    }
 }

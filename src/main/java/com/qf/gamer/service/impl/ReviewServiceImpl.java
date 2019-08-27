@@ -19,7 +19,7 @@ public class ReviewServiceImpl implements ReviewService {
     ReviewMapper reviewMapper;
 
     @Override
-    public List<Review> findReviewByGameId(int gameId) {
-        return reviewMapper.findReview(gameId);
+    public List<Review> findReviewByGameId(int gameId,int page,int size) {
+        return reviewMapper.findReview(gameId,page,size);
     }
 }
