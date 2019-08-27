@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.gamer.mapper.ShopImgMapper">
+    <resultMap id="ShopImgBaseMap" type="ShopImages">
+        <id property="shopImgId" column="shop_img_id"/>
+        <result property="shopImg" column="shop_img"/>
+        <result property="gameId" column="game_id"/>
+        <result property="imgType" column="img_type"/>
+    </resultMap>
+
+</mapper>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.gamer.mapper.GameMapper">
+        <resultMap id="GameBaseMap" type="Game">
+            <id property="gameId" column="game_id"/>
+            <result property="gameName" column="game_name"/>
+            <result property="releasedTime" column="released_time"/>
+            <result property="discount" column="discount"/>
+            <result property="categoryId" column="category_id"/>
+            <result property="gamePublisher" column="game_publisher"/>
+            <result property="isOff" column="is_off"/>
+            <result property="isUse" column="is_use"/>
+            <result property="price" column="price"/>
+            <result property="score" column="score"/>
+        </resultMap>
+
+    <resultMap id="GamePlatMap" type="com.qf.gamer.domain.vo.GameVo" extends="GameBaseMap">
+        <collection property="platformList" resultMap="com.qf.gamer.mapper.PlatformMapper.PlatformBaseMap"/>
+        <collection property="shopImagesList" resultMap="com.qf.gamer.mapper.ShopImgMapper.ShopImgBaseMap"/>
+    </resultMap>
+    <!-- 根据关键字查询游戏 -->
+    <select id="findByName" resultMap="GamePlatMap">
+        select g.game_id, g.game_name, g.released_time, g.category_id, g.game_publisher, g.score, g.price,
+               si.shop_img,
+                 p.platform_name
+        from game g
+        left join platform p on g.game_id = p.game_id
+        left join shop_images si on g.game_id = si.game_id
+        where g.game_name like '%${gameName}%'
+    </select>
+
+
+    <!--根据游戏发布时间排序,同时取到平台信息-->
+    <select id="findByTime" resultMap="GamePlatMap">
+        select g.game_id, g.game_name,
+                p.platform_name,
+                si.shop_img
+        from game g left join platform p on g.game_id = p.game_id
+                    left join shop_images si on g.game_id = si.game_id
+        order by g.released_time desc limit 6
+    </select>
+
+
+    <resultMap id="GameScoreMap" type="com.qf.gamer.domain.vo.GameVo" extends="GameBaseMap">
+        <collection property="gameInfoList" resultMap="com.qf.gamer.mapper.GameInfoMapper.GameInfoBsaeMap"/>
+        <collection property="shopImagesList" resultMap="com.qf.gamer.mapper.ShopImgMapper.ShopImgBaseMap"/>
+    </resultMap>
+    <!--根据评分排出前三,关联详情表的简介字段-->
+    <select id="findByScore" resultMap="GameScoreMap">
+        select g.game_id, game_name, score,
+               gi.game_intro,
+               si.shop_img
+        from game g left join game_info gi on g.game_id = gi.game_id
+                    left join shop_images si on g.game_id = si.game_id
+        order by g.score desc limit 3
+    </select>
+
+
+
+</mapper>
