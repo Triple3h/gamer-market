@@ -15,6 +15,8 @@
         <id property="reviewId" column="review_id"/>
         <result property="reviewContent" column="review_content"/>
         <result property="releaseTime" column="release_time"/>
+        <result property="reviewTitle" column="review_title"/>
+        <result property="reviewScore" column="review_score"/>
         <association property="user" javaType="com.qf.gamer.domain.entity.User">
             <id property="uid" column="uid"/>
             <result property="userName" column="user_name"/>
@@ -25,5 +27,11 @@
         <!--@mbg.generated-->
         review_id, review_content, game_id, release_time, `uid`, is_delete
     </sql>
+
+    <insert id="insertNewReview">
+        INSERT INTO review
+        (review_content, game_id, uid, review_title,review_score)
+        VALUES (#{review.reviewContent}, #{review.gameId},#{review.uid},#{review.reviewTitle},#{param1.reviewScore})
+    </insert>
 
 </mapper>

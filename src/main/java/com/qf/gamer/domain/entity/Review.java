@@ -11,15 +11,24 @@ public class Review {
     private Integer reviewId;
 
     /**
+     * 评论标题
+     */
+    private String reviewTitle;
+
+    /**
     * 评论的内容
     */
     private String reviewContent;
 
     /**
     * 游戏id
-
     */
     private Integer gameId;
+
+    /**
+     * 游戏评分
+     */
+    private Integer reviewScore;
 
     /**
     * 发布时间
