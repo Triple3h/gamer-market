@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MyBatisCodeHelperDatasource">
+    <option name="projectProfile">
+      <ProjectProfile>
+        <option name="javaMapperPackage" value="com.qf.gamer.mapper" />
+        <option name="javaMapperPath" value="$PROJECT_DIR$/src/main/java" />
+        <option name="javaModelPackage" value="com.qf.gamer.domain.entity" />
+        <option name="javaModelPath" value="$PROJECT_DIR$/src/main/java" />
+        <option name="lastDatabaseCrudChooseModuleName" value="gamer-market" />
+        <option name="moduleNameToPackageAndPathMap">
+          <map>
+            <entry key="gamer-market">
+              <value>
+                <UserPackageAndPathInfoByModule>
+                  <option name="javaMapperPackage" value="com.qf.gamer.mapper" />
+                  <option name="javaMapperPath" value="$PROJECT_DIR$/src/main/java" />
+                  <option name="javaModelPacakge" value="com.qf.gamer.domain.entity" />
+                  <option name="javaModelPath" value="$PROJECT_DIR$/src/main/java" />
+                  <option name="xmlPackage" value="mappers" />
+                  <option name="xmlPath" value="$PROJECT_DIR$/src/main/resources" />
+                </UserPackageAndPathInfoByModule>
+              </value>
+            </entry>
+          </map>
+        </option>
+        <option name="tableGenerateConfigs">
+          <map>
+            <entry key="game_market:banner">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="banner_id" />
+                  <option name="javaModelName" value="Banner" />
+                  <option name="moduleName" value="gamer-market" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="game_market:category">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="category_id" />
+                  <option name="javaModelName" value="Category" />
+                  <option name="moduleName" value="gamer-market" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="game_market:game">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="game_id" />
+                  <option name="javaModelName" value="Game" />
+                  <option name="moduleName" value="gamer-market" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="game_market:game_info">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="game_info_id" />
+                  <option name="javaModelName" value="GameInfo" />
+                  <option name="moduleName" value="gamer-market" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="game_market:platform">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="platform_id" />
+                  <option name="javaModelName" value="Platform" />
+                  <option name="moduleName" value="gamer-market" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="game_market:shop_images">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="shop_img_id" />
+                  <option name="javaModelName" value="ShopImages" />
+                  <option name="moduleName" value="gamer-market" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="game_market:stock">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="stock_id" />
+                  <option name="javaModelName" value="Stock" />
+                  <option name="moduleName" value="gamer-market" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="game_market:user">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="uid" />
+                  <option name="javaModelName" value="User" />
+                  <option name="moduleName" value="gamer-market" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+          </map>
+        </option>
+        <option name="useLomBokOnModel" value="true" />
+        <option name="xmlMapperPackage" value="mappers" />
+        <option name="xmlMapperPath" value="$PROJECT_DIR$/src/main/resources" />
+      </ProjectProfile>
+    </option>
+  </component>
+</project>

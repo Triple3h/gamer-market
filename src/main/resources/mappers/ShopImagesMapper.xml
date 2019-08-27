@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.gamer.mapper.ShopImagesMapper">
+  <resultMap id="BaseResultMap" type="com.qf.gamer.domain.entity.ShopImages">
+    <!--@mbg.generated-->
+    <id column="shop_img_id" jdbcType="INTEGER" property="shopImgId" />
+    <result column="shop_img" jdbcType="VARCHAR" property="shopImg" />
+    <result column="game_id" jdbcType="INTEGER" property="gameId" />
+    <result column="img_type" jdbcType="VARCHAR" property="imgType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    shop_img_id, shop_img, game_id, img_type
+  </sql>
+  <insert id="saveShopImages">
+    insert into shop_images(shop_img, game_id, img_type) values(#{shopImg},#{gameId},#{imgType});
+  </insert>
+</mapper>
