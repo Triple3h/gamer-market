@@ -14,6 +14,8 @@ public class Constants {
 
     public static final String CART_SESSION = "cartInfo";
 
+    public static final String LOGIN_ERROR = "用户名或密码错误!!!";
+
     public static final String LOGIN_FIRST = "请先登录";
 
     public static final String EXCEPTION_MSG = "网络开了小差!!!";

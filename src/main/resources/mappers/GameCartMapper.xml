@@ -14,7 +14,7 @@
     </sql>
 
     <resultMap id="cart_game_result" type="com.qf.gamer.domain.vo.GameCartVo" extends="BaseResultMap">
-        <association property="gameId" resultMap="com.qf.gamer.mapper.GameMapper.BaseResultMap"/>
+        <association property="game" javaType="com.qf.gamer.domain.entity.Game" resultMap="com.qf.gamer.mapper.GameMapper.BaseResultMap"/>
     </resultMap>
 
     <select id="findCartsByUid" resultMap="cart_game_result">

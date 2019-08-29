@@ -55,7 +55,7 @@
         FROM game g
         LEFT JOIN platform p ON g.game_id = p.game_id
         LEFT JOIN shop_images si ON g.game_id = si.game_id
-        WHERE g.is_use = 0
+        WHERE g.is_use = 0 AND si.img_type = 'big'
         ORDER BY score DESC
         LIMIT #{pages},#{size}
     </select>
@@ -73,7 +73,7 @@
     <select id="getGameDetail" resultMap="game_detail">
         SELECT g.game_id, game_name, g.released_time, g.category_id, game_publisher, score, price,discount,
                si.shop_img_id,shop_img, p.platform_name,c.category_name, game_intro, game_story, game_about,
-               r.review_content, r.release_time,s.stock_value,u.user_name,u.uid
+               r.review_content, r.review_title,r.release_time,s.stock_value,u.user_name,u.uid,r.review_score
         FROM game g
         LEFT JOIN shop_images si ON g.game_id = si.game_id
         LEFT JOIN platform p ON g.game_id = p.game_id

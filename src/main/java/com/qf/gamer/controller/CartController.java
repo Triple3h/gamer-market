@@ -1,17 +1,12 @@
 package com.qf.gamer.controller;
 
-import com.qf.gamer.domain.entity.User;
 import com.qf.gamer.domain.vo.GameCartVo;
-import com.qf.gamer.domain.vo.GameDetailVo;
 import com.qf.gamer.service.GameCartService;
 import com.qf.gamer.utils.Constants;
 import com.qf.gamer.utils.Result;
-import com.qf.gamer.utils.SessionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -21,25 +16,20 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/cart")
+@RequestMapping("/api/cart")
 public class CartController {
-
-    @Resource
-    HttpServletRequest request;
 
     @Resource
     GameCartService cartService;
 
-    @RequestMapping(value = "/getAll")
-    public Result getCarts() {
+    @RequestMapping(value = "/getAll", params = {"uid"})
+    public Result getCarts(int uid) {
 
         Result result = null;
 
         try {
-            User user = SessionUtils.getSession(request);
-
-            if (user != null) {
-                List<GameCartVo> carts = cartService.findCartsByUid(user.getUid());
+            if (uid >= 0) {
+                List<GameCartVo> carts = cartService.findCartsByUid(uid);
                 if (carts.size() > 0) {
                     result = Result.success(carts);
                 } else {
@@ -54,16 +44,14 @@ public class CartController {
         return result;
     }
 
-    @RequestMapping(value = "/add",params = {"gameId","number"})
-    public Result addCarts(int gameId, int number) {
+    @RequestMapping(value = "/add", params = {"gameId", "number", "uid"})
+    public Result addCarts(int gameId, int number, int uid) {
 
         Result result = null;
 
         try {
-            User user = SessionUtils.getSession(request);
-
-            if (user != null) {
-                int rows = cartService.addGameCart(user.getUid(), gameId, number);
+            if (uid >= 0) {
+                int rows = cartService.addGameCart(uid, gameId, number);
 
                 if (rows > 0) {
                     result = Result.success(rows);

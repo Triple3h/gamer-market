@@ -32,10 +32,7 @@ public class User {
     private Date lastLogin;
 
     /**
-    * 
-
-管理员
- 0为普通用户  1为管理员  默认为0
+    *管理员  0为普通用户  1为管理员  默认为0
     */
     private Integer isSuper;
 
