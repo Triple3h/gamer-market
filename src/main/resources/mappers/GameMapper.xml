@@ -47,11 +47,11 @@
         WHERE is_off = 1
           AND is_use = 0
         ORDER BY discount
-        LIMIT 6
+        LIMIT #{pages},#{size}
     </select>
 
     <select id="getAllGames" resultMap="game_img_plat_result">
-        SELECT g.game_id, g.game_name, si.shop_img, p.platform_name
+        SELECT g.game_id, g.game_name, si.shop_img, p.platform_name,g.price,g.discount
         FROM game g
         LEFT JOIN platform p ON g.game_id = p.game_id
         LEFT JOIN shop_images si ON g.game_id = si.game_id
@@ -61,11 +61,11 @@
     </select>
 
     <select id="getGamesByCate" resultMap="game_img_plat_result">
-        SELECT g.game_id, g.game_name, g.category_id,si.shop_img, p.platform_name
+        SELECT g.game_id, g.game_name, g.category_id,si.shop_img, p.platform_name,g.price,g.discount
         FROM game g
         LEFT JOIN platform p ON g.game_id = p.game_id
         LEFT JOIN shop_images si ON g.game_id = si.game_id
-        WHERE g.is_use = 0 AND category_id = #{cateId}
+        WHERE g.is_use = 0 AND category_id = #{cateId} AND si.img_type = 'big'
         ORDER BY score DESC
         LIMIT #{pages},#{size}
     </select>
@@ -82,7 +82,7 @@
         LEFT JOIN review r ON g.game_id = r.game_id
         LEFT JOIN stock s ON g.game_id = s.game_id
         LEFT JOIN user u ON r.uid = u.uid
-        WHERE g.game_id = #{gameId} AND r.is_delete = 0
+        WHERE g.game_id = #{gameId}
     </select>
 
 

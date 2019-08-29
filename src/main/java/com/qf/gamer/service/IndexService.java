@@ -11,5 +11,5 @@ import java.util.List;
  */
 
 public interface IndexService {
-    List<GameVo> getGameByIsOff();
+    List<GameVo> getGameByIsOff(int pages,int size);
 }

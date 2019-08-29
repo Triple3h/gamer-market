@@ -27,13 +27,19 @@ public class IndexController {
      * @return
      */
     @RequestMapping("/discount")
-    public Result gameDiscountList() {
+    public Result gameDiscountList(int pages, int size) {
 
         Result result = null;
 
         try {
 
-            List<GameVo> games = indexService.getGameByIsOff();
+            if (pages == 0 && size == 0) {
+                size = 12;
+            } else {
+                pages = (pages - 1) * size;
+            }
+
+            List<GameVo> games = indexService.getGameByIsOff(pages, size);
 
             if (games.size() > 0) {
                 result = Result.success(games);

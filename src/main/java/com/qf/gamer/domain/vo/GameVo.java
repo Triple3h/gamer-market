@@ -57,7 +57,7 @@ public class GameVo {
     /**
      * 游戏图片
      */
-    private List<ShopImages> shopImages;
+    private ShopImages shopImages;
 
     /**
      * 游戏平台

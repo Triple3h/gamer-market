@@ -20,7 +20,7 @@ public class IndexServiceImpl implements IndexService {
     GameMapper gameMapper;
 
     @Override
-    public List<GameVo> getGameByIsOff(){
-        return gameMapper.getGameByIsOff();
+    public List<GameVo> getGameByIsOff(int pages, int size) {
+        return gameMapper.getGameByIsOff(pages, size);
     }
 }

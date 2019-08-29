@@ -6,7 +6,6 @@ import com.qf.gamer.service.GameService;
 import com.qf.gamer.utils.Result;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -23,6 +22,12 @@ public class GameController {
     @Resource
     GameService gameService;
 
+    /**
+     * 查询所有游戏
+     * @param pages
+     * @param size
+     * @return
+     */
     @RequestMapping("/all")
     public Result getAllGames(int pages, int size) {
 
@@ -31,7 +36,7 @@ public class GameController {
         try {
 
             if (pages == 0 && size == 0) {
-                size = 10;
+                size = 12;
             } else {
                 pages = (pages - 1) * size;
             }
@@ -49,6 +54,13 @@ public class GameController {
         return result;
     }
 
+    /**
+     * 按分类查询游戏
+     * @param cateId
+     * @param pages
+     * @param size
+     * @return
+     */
     @RequestMapping(value = "/classify", params = {"cateId"})
     public Result getGamesByCate(int cateId, int pages, int size) {
 
@@ -57,7 +69,7 @@ public class GameController {
         try {
 
             if (pages == 0 && size == 0) {
-                size = 10;
+                size = 12;
             } else {
                 pages = (pages - 1) * size;
             }
@@ -75,6 +87,11 @@ public class GameController {
         return result;
     }
 
+    /**
+     * 游戏详情
+     * @param gameId
+     * @return
+     */
     @RequestMapping(value = "/detail", params = {"gameId"})
     public Result getGameDetail(int gameId) {
 

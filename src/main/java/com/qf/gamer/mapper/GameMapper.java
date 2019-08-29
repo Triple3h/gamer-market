@@ -13,7 +13,7 @@ public interface GameMapper {
      *
      * @return
      */
-    List<GameVo> getGameByIsOff();
+    List<GameVo> getGameByIsOff(@Param("pages") int pages, @Param("size") int size);
 
     /**
      * 获取所有游戏
