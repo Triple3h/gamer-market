@@ -11,8 +11,8 @@ import java.util.List;
  */
 @Data
 public class GameVo extends Game{
-    List<Platform> platformList;
-    List<ShopImages> shopImagesList;
-    List<GameInfo> gameInfoList;
+    Platform platforms;
+    ShopImages shopImages;
+    GameInfo gameInfos;
     List<Review> reviewList;
 }

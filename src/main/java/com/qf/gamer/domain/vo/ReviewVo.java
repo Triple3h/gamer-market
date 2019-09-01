@@ -12,5 +12,5 @@ import java.util.List;
  */
 @Data
 public class ReviewVo extends Review {
-    List<User> userList;
+    User users;
 }

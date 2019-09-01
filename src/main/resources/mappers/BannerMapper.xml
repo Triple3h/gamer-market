@@ -9,11 +9,12 @@
         <result property="order" column="order"/>
         <result property="isDelete" column="is_delete"/>
         <result property="createTime" column="create_time"/>
+        <result property="gameId" column="game_id"/>
     </resultMap>
     <!-- 轮播图 -->
     <select id="findBanner" resultMap="BannerBaseMap">
-        select r.banner_id, r.title, r.banner_img, r.detail_url
+        select r.banner_id, r.title, r.banner_img, r.detail_url,r.game_id
         from banner r where r.is_delete=0 and r.order=#{order}
-        order by r.create_time desc limit 4
+        order by r.create_time desc
     </select>
 </mapper>

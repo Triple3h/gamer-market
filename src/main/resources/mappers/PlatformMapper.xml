@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qf.gamer.mapper.PlatformMapper">
     <resultMap id="PlatformBaseMap" type="Platform">
-        <id property="platformId" column="platform_id"/>
-        <result property="platformName" column="platform_name"/>
-       <result property="gameId" column="game_id"/>
-    </resultMap>
+    <id property="platformId" column="platform_id"/>
+    <result property="platformName" column="platform_name"/>
+    <result property="gameId" column="game_id"/>
+</resultMap>
 
 </mapper>

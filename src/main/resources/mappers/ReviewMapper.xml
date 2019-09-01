@@ -11,7 +11,7 @@
     </resultMap>
 
     <resultMap id="ReviewGameMap" type="com.qf.gamer.domain.vo.ReviewVo" extends="ReviewBaseMap">
-        <collection property="userList" resultMap="com.qf.gamer.mapper.UserMapper.UserBaseMap"/>
+        <collection property="users" resultMap="com.qf.gamer.mapper.UserMapper.UserBaseMap"/>
     </resultMap>
 
     <select id="findReview" resultMap="ReviewGameMap" >

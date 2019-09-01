@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Slf4j
 @RestController
-@RequestMapping("/cart")
+@RequestMapping("/api")
 public class GameCartController {
     @Resource
     GameCartService gameCartService;
